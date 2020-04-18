@@ -1,0 +1,61 @@
+@import './override-maz-ui-vars.scss';
+@import 'maz-ui/lib/scss/index.scss';
+
+html,
+body,
+#app {
+  height: inherit;
+}
+
+html,
+body,
+#__nuxt,
+#__layout,
+#app {
+  min-height: 100vh;
+  color: $text-color;
+  background-color: $bg-color;
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $primary;
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+h3 {
+  font-size: 1.7em;
+}
+
+h4 {
+  font-size: 1.5em;
+}
+
+h5 {
+  font-size: 1.3em;
+}
+
+h6 {
+  font-size: 1.1em;
+}
+
+.color-primary {
+  color: $primary-color;
+}
+
+.color-secondary {
+  color: $default-color;
+}

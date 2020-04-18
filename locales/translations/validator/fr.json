@@ -1,0 +1,4 @@
+{
+  "validator.telephone_example": "Le champ {field} est invalide. Exemple: {example}",
+  "validator.telephone": "Le champ {field} est invalide."
+}
