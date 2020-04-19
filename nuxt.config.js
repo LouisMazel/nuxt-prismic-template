@@ -13,8 +13,8 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: '<PROJECT_NAME> - Expert',
-    titleTemplate: '%s | <PROJECT_NAME>',
+    title: '%PROJECT_NAME% - Expert',
+    titleTemplate: '%s | %PROJECT_NAME%',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -82,7 +82,7 @@ module.exports = {
     '@nuxtjs/prismic'
   ],
   moment: {
-    defaultLocale: 'fr',
+    defaultLocale: 'en',
     locales: ['fr']
   },
   prismic,

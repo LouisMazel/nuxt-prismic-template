@@ -1,8 +1,8 @@
 {
-  "name": "APP_NAME",
+  "name": "%APP_NAME%",
   "version": "1.0.0",
-  "description": "APP_DESCRIPTION",
-  "author": "APP_AUTHOR",
+  "description": "%APP_DESCRIPTION%",
+  "author": "%APP_AUTHOR%",
   "private": true,
   "scripts": {
     "serve": "cross-env NODE_ENV=development nodemon api/index.js --watch ./api",

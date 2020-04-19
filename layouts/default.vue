@@ -28,9 +28,5 @@ export default {
     position: fixed;
     width: 100%;
   }
-
-  // .main-content {
-  //   padding-top: 80px;
-  // }
 }
 </style>

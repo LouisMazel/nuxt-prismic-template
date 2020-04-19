@@ -22,20 +22,16 @@
         </MazBtn>
       </div>
     </div>
-    <BenefitsSection id="benefits" />
-    <DataSection />
     <ContactForm />
   </div>
 </template>
 
 <script>
 import ContactForm from '~/components/ContactForm'
-import BenefitsSection from '~/components/BenefitsSection'
-import DataSection from '~/components/DataSection'
 
 export default {
   name: 'Home',
-  components: { ContactForm, BenefitsSection, DataSection },
+  components: { ContactForm },
   async asyncData({ $prismic, error, app }) {
     try {
       const currentLocale = (locale = app.i18n.locale) =>
