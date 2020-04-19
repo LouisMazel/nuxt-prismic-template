@@ -13,7 +13,7 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: projectName,
+    title: appName,
     titleTemplate: `%s | ${appName}`,
     meta: [
       { charset: 'utf-8' },
