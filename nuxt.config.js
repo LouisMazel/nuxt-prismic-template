@@ -36,7 +36,7 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/filters', '~/plugins/maz-ui', '~/plugins/vue-lazyload'],
+  plugins: ['~/filters', '~/plugins/maz-ui'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -63,7 +63,6 @@ module.exports = {
     // }],
     '@nuxtjs/robots',
     '@nuxtjs/sitemap',
-    'vue-scrollto/nuxt',
     [
       'nuxt-i18n',
       {
