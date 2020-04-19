@@ -39,7 +39,8 @@
     "cross-env": "^5.2.0",
     "maz-ui": "^0.7.4",
     "nuxt": "^2.0.0",
-    "nuxt-i18n": "^6.9.1"
+    "nuxt-i18n": "^6.9.1",
+    "prismic-vue": "^2.0.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.0",
