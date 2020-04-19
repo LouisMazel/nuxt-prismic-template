@@ -1,12 +1,14 @@
 export default {
+  projectName: '<%PROJECT_NAME%>',
   siteUrl: {
     development: 'http://localhost:3000',
-    production: '%SITE_URL%'
+    production: '<%SITE_URL%>'
   },
   ga: {
-    id: '<YOUR_GA_UID>'
+    id: '<%GA_UID%>'
   },
   infos: {
-    personalEmail: '%YOUR_EMAIL%'
-  }
+    personalEmail: '<%PROJECT_EMAIL%>'
+  },
+  primsicRepo: '<%PRISMIC_REPO%>'
 }

@@ -3,7 +3,7 @@
     <div class="container flex">
       <nuxt-link :to="localePath('index')" class="nav-bar__logo p-2">
         <img
-          src="~/assets/img/logo.png"
+          src="~/assets/svg/logo.svg"
           class="nav-bar__logo"
           alt="white bird logo"
         />
@@ -32,12 +32,6 @@
         >
           Contactez-nous
         </nuxt-link>
-        <a href="tel:+33123456789" class="fs-16 fw-400 flex align-center">
-          <i class="material-icons mr-2">
-            phone
-          </i>
-          01 46 20 95 48
-        </a>
       </div>
     </div>
   </nav>

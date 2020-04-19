@@ -5,6 +5,7 @@ const prismic = require('./config/prismic')
 
 const env = process.env.NODE_ENV === 'production' ? 'production' : 'development'
 const siteUrl = config.siteUrl[env]
+const projectName = config.projectName
 const { supportedLocales, messages, defaultLocale } = require('./locales')
 
 module.exports = {
@@ -13,8 +14,8 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: '%PROJECT_NAME% - Expert',
-    titleTemplate: '%s | %PROJECT_NAME%',
+    title: projectName,
+    titleTemplate: `%s | ${projectName}`,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },

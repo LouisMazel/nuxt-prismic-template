@@ -23,7 +23,7 @@
       </div>
       <div class="footer-bar__logo">
         <img
-          src="~/assets/img/logo.png"
+          src="~/assets/svg/logo.svg"
           alt="logo"
           class="footer-bar__logo__img"
         />
