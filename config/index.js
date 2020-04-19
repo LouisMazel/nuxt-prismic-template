@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   appName: '<%APP_NAME%>',
   siteUrl: {
     development: 'http://localhost:3000',

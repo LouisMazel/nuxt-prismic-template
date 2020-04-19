@@ -5,7 +5,7 @@
   "author": "<%APP_AUTHOR%>",
   "private": true,
   "scripts": {
-    "serve": "cross-env NODE_ENV=development nodemon api/index.js --watch ./api",
+    "serve": "nuxt",
     "build": "nuxt build",
     "prod": "cross-env NODE_ENV=production node app.js",
     "start": "cross-env NODE_ENV=production node api/index.js",
@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.0",
-    "@nuxtjs/eslint-module": "^1.0.0",
+    "@nuxtjs/eslint-module": "^1.1.0",
     "@nuxtjs/google-analytics": "^2.2.3",
     "@nuxtjs/robots": "^2.4.2",
     "@nuxtjs/sitemap": "^2.0.1",

@@ -1,6 +1,5 @@
-// const meta = require('./config/meta')
+
 const config = require('./config')
-const link = require('./config/link')
 const prismic = require('./config/prismic')
 
 const env = process.env.NODE_ENV === 'production' ? 'production' : 'development'
@@ -24,8 +23,7 @@ module.exports = {
         name: 'description',
         content: process.env.npm_package_description || ''
       }
-    ],
-    link
+    ]
   },
   /*
    ** Customize the progress-bar color
