@@ -15,11 +15,6 @@
         >
           {{ data.title[0].text | capitalize }}
         </nuxt-link>
-        <nuxt-link
-          class="menu__items px-3 flex align-center"
-          :to="localePath('contact')"
-          >Contact</nuxt-link
-        >
       </div>
       <div class="footer-bar__logo">
         <img
