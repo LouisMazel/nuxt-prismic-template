@@ -87,19 +87,19 @@ export default {
     }
 
     &__title {
-      color: $secondary;
+      color: $default-color;
 
       span {
-        color: $primary;
+        color: $primary-color;
       }
     }
 
     &__subtitle {
-      color: $secondary;
+      color: $default-color;
     }
 
     &__subsubtitle {
-      color: $primary;
+      color: $primary-color;
       font-size: 1.3em;
     }
   }

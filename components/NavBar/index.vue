@@ -99,7 +99,7 @@ export default {
       font-weight: 400;
 
       &.nuxt-link-exact-active {
-        border-bottom: 2px solid $primary;
+        border-bottom: 2px solid $primary-color;
       }
 
       &:hover {
