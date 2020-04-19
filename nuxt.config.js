@@ -4,7 +4,7 @@ const prismic = require('./config/prismic')
 
 const env = process.env.NODE_ENV === 'production' ? 'production' : 'development'
 const siteUrl = config.siteUrl[env]
-const projectName = config.projectName
+const appName = config.appName
 const { supportedLocales, messages, defaultLocale } = require('./locales')
 
 module.exports = {
@@ -14,7 +14,7 @@ module.exports = {
    */
   head: {
     title: projectName,
-    titleTemplate: `%s | ${projectName}`,
+    titleTemplate: `%s | ${appName}`,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -36,7 +36,7 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/filters', '~/plugins/maz-ui'],
+  plugins: ['~/filters', '~/plugins/maz-ui', '~/plugins/vue-lazyload'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -63,6 +63,7 @@ module.exports = {
     // }],
     '@nuxtjs/robots',
     '@nuxtjs/sitemap',
+    'vue-scrollto/nuxt',
     [
       'nuxt-i18n',
       {

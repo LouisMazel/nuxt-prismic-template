@@ -25,14 +25,6 @@
           {{ data.title[0].text | capitalize }}
         </nuxt-link>
       </div>
-      <div class="flex align-center">
-        <nuxt-link
-          class="btn btn--primary btn--md mx-3"
-          :to="localePath('contact')"
-        >
-          Contactez-nous
-        </nuxt-link>
-      </div>
     </div>
   </nav>
 </template>
@@ -68,11 +60,8 @@ export default {
 <style lang="scss" scoped>
 .nav-bar {
   height: 80px;
-  // background-color: $bg-color;
-  // border-bottom: 1px solid $hover-color;
-  // background-color: rgba($bg-color, .3);
   transition: all 300ms ease-in-out;
-  z-index: 1;
+  z-index: 2;
 
   &.has-background {
     background-color: $bg-color;
@@ -86,7 +75,7 @@ export default {
   &__logo {
     height: 100%;
 
-    img:hover {
+    &:hover {
       border-radius: $border-radius;
       background-color: $hover-color;
     }
