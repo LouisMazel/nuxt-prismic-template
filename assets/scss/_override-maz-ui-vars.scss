@@ -1,6 +1,6 @@
-$primary-color: rgb(0, 58, 73);
+$primary-color: <%APP_PRIMARY_COLOR%>;
 $primary-color-transparency: rgba($primary-color, 0.7);
-$default-color: rgb(221, 137, 0);
+$default-color: <%APP_SECONDARY_COLOR%>;
 // $success-color:   #6FCB67;
 $border-radius: 8px;
 $base-font-size: 16px;

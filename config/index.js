@@ -19,7 +19,7 @@ module.exports = {
     receiveContactAt: '<%APP_EMAIL%>',
     smtp: {
       host: '<%APP_SMTP_HOST%>',
-      port: '<%APP_SMTP_PORT%>',
+      port: <%APP_SMTP_PORT%>,
       user: '<%APP_SMTP_USER%>',
       pass: '<%APP_SMTP_PASS%>'
     },
@@ -27,7 +27,7 @@ module.exports = {
       domain: '<%APP_MAILGUN_DOMAIN%>',
       apiKey: '<%APP_MAILGUN_APIKEY%>'
     },
-    clientEmail: '<%APP_MAILGUN_APIKEY%>' // or 'smtp'
+    clientEmail: '<%APP_CLIENT_EMAIL%>' // or 'smtp'
   },
   ga: {
     id: 'UA-XXXXXXX-X'
