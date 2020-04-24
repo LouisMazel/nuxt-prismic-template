@@ -3,7 +3,6 @@ const { company, siteUrl, defaultLocale } = require('./config')
 const env = process.env.NODE_ENV === 'production' ? 'production' : 'development'
 const baseUrl = siteUrl[env]
 const { prismicEndpoint } = require('./config')
-const link = require('./config/link')
 const prismic = require('./config/prismic')
 const generateSitemapRoutes = require('./utils/generate-sitemap')
 const { supportedLocales, messages } = require('./locales')
@@ -24,8 +23,7 @@ module.exports = {
         name: 'description',
         content: process.env.npm_package_description || ''
       }
-    ],
-    link
+    ]
   },
   /*
    ** Customize the progress-bar color

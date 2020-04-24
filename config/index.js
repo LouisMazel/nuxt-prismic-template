@@ -13,7 +13,7 @@ module.exports = {
     development: 'http://localhost:3000',
     production: '<%APP_PRODUCTION_URL%>'
   },
-  defaultLocale: 'fr',
+  defaultLocale: 'en',
   emailing: {
     sendContactBy: '<%APP_EMAIL%>',
     receiveContactAt: '<%APP_EMAIL%>',
