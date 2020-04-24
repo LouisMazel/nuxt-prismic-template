@@ -3,6 +3,9 @@
  * This list is the source of truth for the supported locales.
  * @constant supportedLocales
  */
+
+const { defaultLocale } = require('./../config')
+
 const supportedLocales = [
   {
     code: 'fr',
@@ -29,8 +32,6 @@ const jsonConcat = (o1, o2) => {
   }
   return o1
 }
-
-const defaultLocale = 'fr'
 
 const messages = {}
 

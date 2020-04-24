@@ -1,11 +1,12 @@
-
-const config = require('./config')
-const prismic = require('./config/prismic')
+const { company, siteUrl, defaultLocale } = require('./config')
 
 const env = process.env.NODE_ENV === 'production' ? 'production' : 'development'
-const siteUrl = config.siteUrl[env]
-const appName = config.appName
-const { supportedLocales, messages, defaultLocale } = require('./locales')
+const baseUrl = siteUrl[env]
+const { prismicEndpoint } = require('./config')
+const link = require('./config/link')
+const prismic = require('./config/prismic')
+const generateSitemapRoutes = require('./utils/generate-sitemap')
+const { supportedLocales, messages } = require('./locales')
 
 module.exports = {
   mode: 'universal',
@@ -13,8 +14,8 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: appName,
-    titleTemplate: `%s | ${appName}`,
+    title: company.name,
+    titleTemplate: `%s | ${company.name}`,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -23,7 +24,8 @@ module.exports = {
         name: 'description',
         content: process.env.npm_package_description || ''
       }
-    ]
+    ],
+    link
   },
   /*
    ** Customize the progress-bar color
@@ -36,7 +38,12 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/filters', '~/plugins/maz-ui', '~/plugins/vue-lazyload'],
+  plugins: [
+    '~/filters',
+    '~/plugins/axios',
+    '~/plugins/maz-ui',
+    '~/plugins/vue-lazyload'
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -56,20 +63,20 @@ module.exports = {
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
     'nuxt-material-design-icons',
-    'vue-wait/nuxt',
+    ['vue-wait/nuxt', { useVuex: true }],
     // ['@nuxtjs/google-analytics', {
     //   id: 'UA-XXXXXX-X',
     //   dev: true
     // }],
     '@nuxtjs/robots',
-    '@nuxtjs/sitemap',
     'vue-scrollto/nuxt',
     [
       'nuxt-i18n',
       {
         locales: supportedLocales,
-        baseUrl: siteUrl,
+        baseUrl,
         defaultLocale,
+        strategy: 'prefix_except_default',
         vueI18n: {
           fallbackLocale: defaultLocale,
           messages
@@ -78,16 +85,20 @@ module.exports = {
     ],
     '@/modules/static',
     '@/modules/crawler',
-    '@nuxtjs/prismic'
+    '@nuxtjs/prismic',
+    '@nuxtjs/sitemap' // always at end of array
   ],
   moment: {
-    defaultLocale: 'en',
+    defaultLocale,
     locales: ['fr']
   },
-  prismic,
+  prismic: {
+    ...prismic,
+    endpoint: prismicEndpoint
+  },
   styleResources: {
     scss: [
-      '~/assets/scss/_vars.scss',
+      '~/assets/scss/_override-maz-ui-vars.scss',
       'maz-ui/lib/scss/style-helpers/variables/index.scss'
     ]
   },
@@ -97,9 +108,10 @@ module.exports = {
     }
   ],
   sitemap: {
-    hostname: siteUrl,
+    routes: () => generateSitemapRoutes(),
     gzip: true,
-    path: '/sitemap.xml'
+    path: '/sitemap.xml',
+    exclude: ['/preview', '/en/preview']
   },
   /*
    ** Axios module configuration

@@ -1,4 +1,5 @@
-@import './override-maz-ui-vars.scss';
+@import './load-fonts';
+@import './override-maz-ui-vars';
 @import 'maz-ui/lib/scss/index.scss';
 
 html,
@@ -25,7 +26,20 @@ h4,
 h5,
 h6 {
   color: $primary-color;
-  font-weight: 500;
+  font-weight: normal;
+  font-family: 'GeomanistBold', sans-serif;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'GeomanistMedium', sans-serif;
+}
+
+button, a {
+  font-family: 'GeomanistLight', sans-serif;
+  font-weight: normal;
 }
 
 h1 {
@@ -58,4 +72,83 @@ h6 {
 
 .color-secondary {
   color: $default-color;
+}
+
+img[lazy='loading'] {
+  width: 150px !important;
+  max-width: 80% !important;
+}
+
+pre {
+  font-family: monospace, Monaco;
+  font-size: 13px;
+  line-height: 24px;
+  background: #1d2230;
+  padding: 10px 12px;
+  color: #fff;
+  border-radius: 4px;
+  margin: 15px 0;
+  white-space: pre-wrap;
+}
+
+div[data-oembed-type='video'] {
+  text-align: center;
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  margin: 0 auto;
+  margin-bottom: 15px;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.block-img {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin-bottom: 15px;
+
+  img {
+    max-width: 100%;
+  }
+}
+
+div[data-oembed-type='video'] {
+  text-align: center;
+  position: relative;
+  width: 80%;
+  height: 0;
+  padding-bottom: 56.25%;
+  margin: 0 auto;
+  margin-bottom: 15px;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+ul,
+ol {
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+
+strong {
+  font-weight: 600;
+}
+
+
+.maz-btn {
+  box-shadow: 0 2px 5px 0 rgba(3, 6, 26, 0.15);
 }

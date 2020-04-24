@@ -1,38 +1,18 @@
 <template>
   <div class="legal-page">
     <CustomSection bg-light>
-      <h1 v-if="contentData.title" class="text-center">
-        {{ contentData.title[0].text }}
-      </h1>
-      <h2 v-if="contentData.content" class="text-center">
-        {{ contentData.content[0].text }}
-      </h2>
+      <RichText class="text-center" :content="contentData.title" />
     </CustomSection>
     <CustomSection>
+      <RichText :content="contentData.content" />
       <div
         v-for="({ article_title, article_content, list_content },
         i) in contentData.articles"
         :key="i"
         class="articles"
       >
-        <h3 v-if="article_title[0]" class="mb-4">
-          {{ article_title[0].text }}
-        </h3>
-        <p
-          v-for="({ text }, pIdx) in article_content"
-          :key="`pararaphs-${pIdx}`"
-          class="mb-4"
-        >
-          {{ text }}
-        </p>
-        <ul class="mb-4">
-          <li
-            v-for="({ text }, listIdx) in list_content"
-            :key="`list-${listIdx}`"
-          >
-            {{ text }}
-          </li>
-        </ul>
+        <RichText :content="article_title" class="mb-4" />
+        <RichText :content="article_content" />
       </div>
       <p class="text-muted mt-4 text-right">
         Dernière modification: {{ lastModificationDate }}
@@ -42,25 +22,33 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import CustomSection from '@/components/CustomSection'
+import RichText from '~/components/CMSModules/RichText'
 
 export default {
   name: 'LegalPage',
   components: {
-    CustomSection
+    CustomSection,
+    RichText
   },
-  validate({ params, store }) {
-    const legalUidAllowed = store.getters.legalPages.map((p) => p.uid)
-    return legalUidAllowed.includes(params.legalUid)
+  async asyncData({ $prismic, error, app, params, store }) {
+    try {
+      const currentLocale = (locale = app.i18n.locale) =>
+        locale === 'en' ? 'en-gb' : 'fr-fr'
+      const linkData = store.getters.legalMenu.filter(
+        (m) => m.link.uid === params.legalUid
+      )[0].link
+      const content = await $prismic.api.getByID(linkData.id, {
+        lang: currentLocale()
+      })
+      return {
+        content
+      }
+    } catch (e) {
+      error({ statusCode: 404, message: 'Page not found' })
+    }
   },
   computed: {
-    ...mapGetters(['legalPages']),
-    content() {
-      return this.legalPages.filter(
-        (p) => p.uid === this.$route.params.legalUid
-      )[0]
-    },
     contentData() {
       return this.content.data
     },
@@ -73,8 +61,6 @@ export default {
 
 <style lang="scss" scoped>
 .legal-page {
-  padding-top: 80px;
-
   ul {
     padding-left: 20px;
   }

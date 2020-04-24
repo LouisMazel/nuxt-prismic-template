@@ -1,51 +1,51 @@
 <template>
   <div ref="home" class="home">
     <div ref="header" class="header flex flex-center">
-      <img :src="mainImage.url" :alt="mainImage.alt" class="header__illu" />
+      <img
+        :src="data.main_image.url"
+        :alt="data.main_image.alt"
+        class="header__illu"
+      />
       <div class="container">
-        <h1 class="header__title">
-          {{ mainTitle }}
-        </h1>
-        <h2 class="header__subtitle">
-          {{ secondTitle }}
-        </h2>
-        <h3 class="header__subsubtitle">
-          {{ thirdTitle }}
-        </h3>
+        <RichText :content="data.main_title" class="header__title" />
+        <RichText :content="data.second_title" class="header__subtitle" />
+        <RichText :content="data.third_title" class="header__subsubtitle" />
         <MazBtn
           v-scroll-to="'#benefits'"
           size="lg"
           class="mt-4"
           color="default"
         >
-          {{ buttonShowMore }}
+          {{ data.button_show_more_text }}
         </MazBtn>
       </div>
     </div>
+    <BenefitsSection id="benefits" />
+    <DataSection />
     <ContactForm />
   </div>
 </template>
 
 <script>
-import ContactForm from '~/components/ContactForm'
+import ContactForm from '@/components/CMSModules/ContactForm'
+import BenefitsSection from '@/components/BenefitsSection'
+import DataSection from '@/components/DataSection'
+import RichText from '@/components/CMSModules/RichText'
 
 export default {
   name: 'Home',
-  components: { ContactForm },
-  async asyncData({ $prismic, error, app }) {
+  components: { ContactForm, BenefitsSection, DataSection, RichText },
+  async asyncData({ $prismic, error, app, store }) {
     try {
       const currentLocale = (locale = app.i18n.locale) =>
         locale === 'en' ? 'en-gb' : 'fr-fr'
-      const response = await $prismic.api.getSingle('home', {
+      const content = await $prismic.api.getSingle('home', {
         lang: currentLocale()
       })
-      const document = response.data
+      store.dispatch('pushLandingContentIfNotExist', content)
+      const { data } = content
       return {
-        mainTitle: document.main_title[0].text,
-        secondTitle: document.second_title[0].text,
-        thirdTitle: document.third_title[0].text,
-        buttonShowMore: document.button_show_more_text,
-        mainImage: document.main_image
+        data
       }
     } catch (e) {
       error({ statusCode: 404, message: 'Page not found' })
@@ -59,15 +59,18 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .home {
   .header {
     height: 880px;
     position: relative;
     overflow: hidden;
+    top: -80px;
 
     .container {
       z-index: 1;
+      position: relative;
+      top: -100px;
     }
 
     @media only screen and (max-width: $breakpoint-tablet) {
@@ -80,25 +83,19 @@ export default {
       bottom: -350px;
     }
 
-    &__title,
-    &__subtitle,
-    &__subsubtitle {
-      font-weight: 400;
-    }
+    &__title > * {
+      color: $default-color !important;
 
-    &__title {
-      color: $default-color;
-
-      span {
+      > * {
         color: $primary-color;
       }
     }
 
-    &__subtitle {
+    &__subtitle > * {
       color: $default-color;
     }
 
-    &__subsubtitle {
+    &__subsubtitle > * {
       color: $primary-color;
       font-size: 1.3em;
     }
