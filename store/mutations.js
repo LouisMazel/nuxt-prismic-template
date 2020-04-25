@@ -1,6 +1,6 @@
 export default {
-  SET_LEGAL_MENU(state, payload) {
-    state.legalMenu = payload
+  SET_SUBFOOTER_MENU(state, payload) {
+    state.subfooterMenu = payload
   },
   SET_HEADER_MENU(state, payload) {
     state.headerMenu = payload

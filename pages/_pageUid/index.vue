@@ -1,12 +1,11 @@
 <template>
-  <div class="about">
+  <div class="landing-page">
     <CustomSection bg-light>
       <RichText :content="title" class="text-center" />
       <RichText :content="subtitle" class="text-center" />
     </CustomSection>
     <CustomSection>
       <RichText :content="mainParagraph" />
-      <ComponentsHandler :components="components" />
     </CustomSection>
     <CustomSection v-if="contents.length" bg-light>
       <RichText
@@ -38,22 +37,20 @@ import TeamHandler from '@/components/CMSModules/TeamHandler'
 import ContactForm from '@/components/CMSModules/ContactForm'
 import LinksHandler from '@/components/CMSModules/LinksHandler'
 import RichText from '@/components/CMSModules/RichText'
-import ComponentsHandler from '@/components/CMSModules/ComponentsHandler'
 
 export default {
-  name: 'MarketPage',
+  name: 'LandingPage',
   components: {
     CustomSection,
     TeamHandler,
     ContactForm,
     LinksHandler,
-    RichText,
-    ComponentsHandler
+    RichText
   },
   async asyncData({ $prismic, error, app, params, store }) {
     try {
       const linkData = store.getters.headerMenu.find(
-        (m) => m.link.uid === params.marketUid
+        (m) => m.link.uid === params.pageUid
       ).link
 
       const { data } = await $prismic.api.getByID(linkData.id)
@@ -77,30 +74,6 @@ export default {
     contents() {
       return this.data.contents
     },
-    components() {
-      const { data } = this
-      const prefix = 'main_'
-      const params = [
-        'link',
-        'date',
-        'time',
-        'number',
-        'keytext',
-        'embed',
-        'geo',
-        'image'
-      ]
-      const allowedComponents = [`number`, `keytext`]
-      const mapComponents = params.map((p) => ({
-        type: p,
-        data: data[`${prefix}${p}`]
-      }))
-      return mapComponents.filter(
-        (c) =>
-          c.data !== null &&
-          (allowedComponents.includes(c.type) || Object.keys(c.data).length > 2)
-      )
-    },
     slices() {
       return this.data.body
     }
@@ -112,11 +85,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.about {
-  h1 {
-    margin-bottom: 50px;
-  }
-}
-</style>

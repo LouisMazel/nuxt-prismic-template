@@ -12,7 +12,6 @@
             alt="logo"
           />
         </nuxt-link>
-        <LanguageSwitcher flagged />
       </div>
       <div class="flex-1" />
       <div class="menu flex">
@@ -27,17 +26,8 @@
       </div>
       <div class="flex align-center">
         <nuxt-link class="btn btn--primary mx-3" :to="localePath('contact')">
-          Contactez-nous
+          Contact us
         </nuxt-link>
-        <a
-          :href="`tel:${company.phone.prefixed}`"
-          class="fs-16 fw-400 flex align-center"
-        >
-          <i class="material-icons mr-2">
-            phone
-          </i>
-          {{ company.phone.display }}
-        </a>
       </div>
     </div>
   </nav>
@@ -45,16 +35,12 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import LanguageSwitcher from '@/components/LanguageSwitcher'
-import { company } from '@/config'
 
 export default {
   name: 'NavBar',
-  components: { LanguageSwitcher },
   data() {
     return {
-      hasBackground: false,
-      company
+      hasBackground: false
     }
   },
   computed: {

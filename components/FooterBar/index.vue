@@ -1,7 +1,6 @@
 <template>
   <footer class="footer-bar" role="contentinfo">
     <nav class="container flex align-center space-between py-4">
-      <LanguageSwitcher position="top right" />
       <div class="flex align-center">
         <nuxt-link
           v-for="({ label, link }, i) in headerMenu"
@@ -14,7 +13,7 @@
         <nuxt-link
           class="menu__items px-3 flex align-center"
           :to="localePath('contact')"
-          >Contact</nuxt-link
+          >Contact us</nuxt-link
         >
       </div>
       <div class="footer-bar__logo">
@@ -28,11 +27,11 @@
     <div class="footer-bar__subs py-2">
       <div class="container flex justify-end">
         <div
-          v-for="({ label, link }, i) in legalMenu"
+          v-for="({ label, link }, i) in subfooterMenu"
           :key="i"
-          class="footer-bar__subs__legals-links mr-2"
+          class="footer-bar__subs__subfooter-links mr-2"
         >
-          <nuxt-link class="fs-14" :to="localePath(`/legal/${link.uid}`)">{{
+          <nuxt-link class="fs-14" :to="localePath(`/contents/${link.uid}`)">{{
             label[0].text | capitalize
           }}</nuxt-link>
         </div>
@@ -44,19 +43,17 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import LanguageSwitcher from '@/components/LanguageSwitcher'
 import { company } from '@/config'
 
 export default {
   name: 'FooterBar',
-  components: { LanguageSwitcher },
   data() {
     return {
       company
     }
   },
   computed: {
-    ...mapGetters(['legalMenu', 'headerMenu', 'footerMenu'])
+    ...mapGetters(['subfooterMenu', 'headerMenu', 'footerMenu'])
   }
 }
 </script>
@@ -77,7 +74,7 @@ export default {
   &__subs {
     background-color: $hover-color;
 
-    &__legals-links {
+    &__subfooter-links {
       &::after {
         content: ' -';
       }

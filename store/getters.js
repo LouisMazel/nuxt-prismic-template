@@ -1,5 +1,5 @@
 export default {
-  legalMenu: (state) => state.legalMenu && state.legalMenu.menu_links,
+  subfooterMenu: (state) => state.subfooterMenu && state.subfooterMenu.menu_links,
   headerMenu: (state) => state.headerMenu && state.headerMenu.menu_links,
   footerMenu: (state) => state.footerMenu && state.footerMenu.menu_links,
   getMarketingContentBySlug: (state) => (slug) =>

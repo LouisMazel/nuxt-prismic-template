@@ -1,5 +1,5 @@
 <template>
-  <div class="legal-page">
+  <div class="content-page">
     <CustomSection bg-light>
       <RichText class="text-center" :content="data.title" />
     </CustomSection>
@@ -15,7 +15,7 @@
         <RichText :content="article_content" />
       </div>
       <p class="text-muted mt-4 text-right">
-        Dernière modification: {{ lastModificationDate }}
+        Last modification: {{ lastModificationDate }}
       </p>
     </CustomSection>
   </div>
@@ -26,15 +26,15 @@ import CustomSection from '@/components/CustomSection'
 import RichText from '~/components/CMSModules/RichText'
 
 export default {
-  name: 'LegalPage',
+  name: 'ContentPage',
   components: {
     CustomSection,
     RichText
   },
   async asyncData({ $prismic, error, app, params, store }) {
     try {
-      const linkData = store.getters.legalMenu.filter(
-        (m) => m.link.uid === params.legalUid
+      const linkData = store.getters.subfooterMenu.filter(
+        (m) => m.link.uid === params.pageUid
       )[0].link
       const { data } = await $prismic.api.getByID(linkData.id)
       return {
@@ -53,7 +53,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.legal-page {
+.content-page {
   ul {
     padding-left: 20px;
   }

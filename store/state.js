@@ -1,7 +1,7 @@
 export default () => ({
   headerMenu: null,
   footerMenu: null,
-  legalMenu: null,
+  subfooterMenu: null,
   marketingContents: [],
   landingContents: []
 })
