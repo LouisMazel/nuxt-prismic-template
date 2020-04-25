@@ -5,7 +5,7 @@ module.exports = {
     email: '<%APP_EMAIL%>',
     phone: {
       display: '<%APP_PHONE%>',
-      prefixed: '<%APP_PHONE_PREFIX%>'
+      prefixed: '<%APP_PHONE_PREFIXED%>'
     }
   },
   apiPath: '/api',
