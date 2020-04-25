@@ -1,13 +1,13 @@
 <template>
   <div class="legal-page">
     <CustomSection bg-light>
-      <RichText class="text-center" :content="contentData.title" />
+      <RichText class="text-center" :content="data.title" />
     </CustomSection>
     <CustomSection>
-      <RichText :content="contentData.content" />
+      <RichText :content="data.content" />
       <div
         v-for="({ article_title, article_content, list_content },
-        i) in contentData.articles"
+        i) in data.articles"
         :key="i"
         class="articles"
       >
@@ -33,25 +33,18 @@ export default {
   },
   async asyncData({ $prismic, error, app, params, store }) {
     try {
-      const currentLocale = (locale = app.i18n.locale) =>
-        locale === 'en' ? 'en-gb' : 'fr-fr'
       const linkData = store.getters.legalMenu.filter(
         (m) => m.link.uid === params.legalUid
       )[0].link
-      const content = await $prismic.api.getByID(linkData.id, {
-        lang: currentLocale()
-      })
+      const { data } = await $prismic.api.getByID(linkData.id)
       return {
-        content
+        data
       }
     } catch (e) {
       error({ statusCode: 404, message: 'Page not found' })
     }
   },
   computed: {
-    contentData() {
-      return this.content.data
-    },
     lastModificationDate() {
       return this.$moment(this.content.last_publication_date).format('ll')
     }

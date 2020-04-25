@@ -15,7 +15,7 @@ const supportedLocales = [
   {
     code: 'en',
     name: 'English',
-    iso: 'en-gb'
+    iso: 'en-us'
   }
 ]
 

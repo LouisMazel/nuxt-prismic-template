@@ -2,9 +2,9 @@ export default {
   async nuxtServerInit({ commit }, { $prismic, error, app }) {
     try {
       const currentLocale = (locale = app.i18n.locale) =>
-        locale === 'en' ? 'en-gb' : 'fr-fr'
+        locale === 'en' ? 'en-us' : 'fr-fr'
       const legalMenu = (
-        await $prismic.api.getSingle('menu_legal_pages', {
+        await $prismic.api.getSingle('menu_subfooter', {
           lang: currentLocale()
         })
       ).data

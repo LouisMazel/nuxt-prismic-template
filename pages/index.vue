@@ -37,13 +37,7 @@ export default {
   components: { ContactForm, BenefitsSection, DataSection, RichText },
   async asyncData({ $prismic, error, app, store }) {
     try {
-      const currentLocale = (locale = app.i18n.locale) =>
-        locale === 'en' ? 'en-gb' : 'fr-fr'
-      const content = await $prismic.api.getSingle('home', {
-        lang: currentLocale()
-      })
-      store.dispatch('pushLandingContentIfNotExist', content)
-      const { data } = content
+      const { data } = await $prismic.api.getSingle('homepage')
       return {
         data
       }

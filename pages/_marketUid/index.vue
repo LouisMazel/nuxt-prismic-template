@@ -52,19 +52,11 @@ export default {
   },
   async asyncData({ $prismic, error, app, params, store }) {
     try {
-      const currentLocale = (locale = app.i18n.locale) =>
-        locale === 'en' ? 'en-gb' : 'fr-fr'
       const linkData = store.getters.headerMenu.find(
         (m) => m.link.uid === params.marketUid
       ).link
 
-      const content =
-        store.getters.getMarketingContentBySlug(params.marketUid) ||
-        (await $prismic.api.getByID(linkData.id, {
-          lang: currentLocale()
-        }))
-      store.dispatch('pushMarketingContentIfNotExist', content)
-      const { data } = content
+      const { data } = await $prismic.api.getByID(linkData.id)
       return {
         data
       }
