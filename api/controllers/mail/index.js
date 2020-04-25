@@ -5,7 +5,7 @@ const handlebars = require('handlebars')
 const mailgun = require('./services/mailgun')
 const sendinblue = require('./services/sendinblue')
 
-const { clientEmail, company, emailing, siteUrl } = require('./../../../config')
+const { company, emailing, siteUrl } = require('./../../../config')
 
 const extractHostname = (url) => {
   let hostname = url.includes('//') ? url.split('/')[2] : url.split('/')[0]
@@ -21,7 +21,7 @@ const readHTMLFile = (path, callback) => {
 
 const emailSender = (data) => {
   return new Promise((resolve, reject) => {
-    const client = clientEmail === 'mailgun' ? mailgun : sendinblue
+    const client = emailing.clientEmail === 'mailgun' ? mailgun : sendinblue
     client(data)
       .then((info) => resolve(info))
       .catch((err) => reject(err))

@@ -22,7 +22,7 @@
       </div>
     </CustomSection>
     <div>
-      <ContactForm bg-light title="Directement ici" />
+      <ContactForm bg-light title="Directly here" />
     </div>
   </div>
 </template>
