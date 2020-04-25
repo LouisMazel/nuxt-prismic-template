@@ -6,5 +6,5 @@ export default {
   getMarketingContentBySlug: (state) => (slug) =>
     state.marketingContents.find((p) => p.slugs.find((s) => s === slug)),
   getLandingContentByType: (state) => (type) =>
-    state.landingContents.find((p) => p.type === type),
+    state.landingContents.find((p) => p.type === type)
 }

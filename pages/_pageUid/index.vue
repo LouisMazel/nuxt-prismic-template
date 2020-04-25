@@ -7,45 +7,28 @@
     <CustomSection>
       <RichText :content="mainParagraph" />
     </CustomSection>
-    <CustomSection v-if="contents.length" bg-light>
+    <CustomSection v-if="contents[0].content.length" bg-light>
       <RichText
         v-for="(content, i) in contents"
         :key="`content-${i}`"
         :content="content.content"
       />
     </CustomSection>
-    <div v-for="(slice, i) in slices" :key="`slice-${i}`" class="slices">
-      <LinksHandler
-        v-if="slice.slice_type === 'list_of_articles' && slice.items.length"
-        :links="slice.items"
-      />
-      <TeamHandler
-        v-if="slice.slice_type === 'team' && slice.items.length"
-        :profiles="slice.items"
-      />
-      <ContactForm
-        v-if="slice.slice_type === 'contact_form_section' && slice.items.length"
-        :title="slice.primary.contact_title"
-      />
-    </div>
+    <SlicesSection v-if="slices.length" :slices="slices" />
   </div>
 </template>
 
 <script>
 import CustomSection from '@/components/CustomSection'
-import TeamHandler from '@/components/CMSModules/TeamHandler'
-import ContactForm from '@/components/CMSModules/ContactForm'
-import LinksHandler from '@/components/CMSModules/LinksHandler'
 import RichText from '@/components/CMSModules/RichText'
+import SlicesSection from '@/components/CMSModules/SlicesSection'
 
 export default {
   name: 'LandingPage',
   components: {
     CustomSection,
-    TeamHandler,
-    ContactForm,
-    LinksHandler,
-    RichText
+    RichText,
+    SlicesSection
   },
   async asyncData({ $prismic, error, app, params, store }) {
     try {

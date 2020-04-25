@@ -15,26 +15,25 @@
           size="lg"
           class="mt-4"
           color="default"
+          >{{ data.button_show_more_text }}</MazBtn
         >
-          {{ data.button_show_more_text }}
-        </MazBtn>
       </div>
     </div>
-    <BenefitsSection id="benefits" />
-    <DataSection />
-    <ContactForm />
+    <CustomSection bg-light>
+      <RichText :content="data.main_content" />
+    </CustomSection>
+    <SlicesSection v-if="slices.length" :slices="slices" />
   </div>
 </template>
 
 <script>
-import ContactForm from '@/components/CMSModules/ContactForm'
-import BenefitsSection from '@/components/BenefitsSection'
-import DataSection from '@/components/DataSection'
+import CustomSection from '@/components/CustomSection'
 import RichText from '@/components/CMSModules/RichText'
+import SlicesSection from '@/components/CMSModules/SlicesSection'
 
 export default {
   name: 'Home',
-  components: { ContactForm, BenefitsSection, DataSection, RichText },
+  components: { RichText, CustomSection, SlicesSection },
   async asyncData({ $prismic, error, app, store }) {
     try {
       const { data } = await $prismic.api.getSingle('homepage')
@@ -43,6 +42,11 @@ export default {
       }
     } catch (e) {
       error({ statusCode: 404, message: 'Page not found' })
+    }
+  },
+  computed: {
+    slices() {
+      return this.data.body
     }
   },
   head() {
@@ -59,7 +63,6 @@ export default {
     height: 880px;
     position: relative;
     overflow: hidden;
-    top: -80px;
 
     .container {
       z-index: 1;
