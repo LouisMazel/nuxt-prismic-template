@@ -1,15 +1,10 @@
 export default {
   async nuxtServerInit({ commit }, { $prismic, error }) {
     try {
-      const subfooterMenu = (
-        await $prismic.api.getSingle('menu_subfooter')
-      ).data
-      const headerMenu = (
-        await $prismic.api.getSingle('menu_header')
-      ).data
-      const footerMenu = (
-        await $prismic.api.getSingle('menu_footer')
-      ).data
+      const subfooterMenu = (await $prismic.api.getSingle('menu_subfooter'))
+        .data
+      const headerMenu = (await $prismic.api.getSingle('menu_header')).data
+      const footerMenu = (await $prismic.api.getSingle('menu_footer')).data
       commit('SET_HEADER_MENU', headerMenu)
       commit('SET_FOOTER_MENU', footerMenu)
       commit('SET_SUBFOOTER_MENU', subfooterMenu)

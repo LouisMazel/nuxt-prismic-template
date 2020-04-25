@@ -6,11 +6,9 @@
           :to="localePath('index')"
           class="nav-bar__logo p-2 flex-fixed"
         >
-          <img
-            src="~/assets/img/logo.png"
-            class="nav-bar__logo flex-fixed"
-            alt="logo"
-          />
+          <div class="nav-bar__logo__container">
+            <img src="~/assets/svg/logo.svg" class="flex-fixed" alt="logo" />
+          </div>
         </nuxt-link>
       </div>
       <div class="flex-1" />
@@ -20,14 +18,13 @@
           :key="i"
           :to="localePath(`/${link.uid}`)"
           class="menu__items px-3 flex align-center"
+          >{{ label[0].text | capitalize }}</nuxt-link
         >
-          {{ label[0].text | capitalize }}
-        </nuxt-link>
       </div>
       <div class="flex align-center">
-        <nuxt-link class="btn btn--primary mx-3" :to="localePath('contact')">
-          Contact us
-        </nuxt-link>
+        <nuxt-link class="btn btn--primary mx-3" :to="localePath('contact')"
+          >Contact us</nuxt-link
+        >
       </div>
     </div>
   </nav>
@@ -80,16 +77,22 @@ export default {
 
   &__logo {
     height: 100%;
-    width: 133px;
     position: relative;
 
-    img {
+    &__container {
       height: 100%;
       max-width: 100%;
+      padding: 4px;
 
       &:hover {
         border-radius: $border-radius;
         background-color: $hover-color;
+      }
+
+      img {
+        height: 100%;
+        max-width: 100%;
+        color: $primary-color;
       }
     }
   }
