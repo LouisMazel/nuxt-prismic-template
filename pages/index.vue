@@ -11,7 +11,7 @@
         <RichText :content="data.second_title" class="header__subtitle" />
         <RichText :content="data.third_title" class="header__subsubtitle" />
         <MazBtn
-          v-scroll-to="'#benefits'"
+          v-scroll-to="'#home-content'"
           size="lg"
           class="mt-4"
           color="default"
@@ -19,7 +19,10 @@
         >
       </div>
     </div>
-    <CustomSection bg-light>
+    <CustomSection
+      id="home-content"
+      bg-light
+    >
       <RichText :content="data.main_content" />
     </CustomSection>
     <SlicesSection v-if="slices.length" :slices="slices" />

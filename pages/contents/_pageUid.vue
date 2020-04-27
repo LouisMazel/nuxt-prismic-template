@@ -36,9 +36,12 @@ export default {
       const linkData = store.getters.subfooterMenu.filter(
         (m) => m.link.uid === params.pageUid
       )[0].link
-      const { data } = await $prismic.api.getByID(linkData.id)
+
+      const content = await $prismic.api.getByID(linkData.id)
+      const { data } = content
       return {
-        data
+        data,
+        lastPublicationDate: content.last_publication_date
       }
     } catch (e) {
       error({ statusCode: 404, message: 'Page not found' })
@@ -46,7 +49,7 @@ export default {
   },
   computed: {
     lastModificationDate() {
-      return this.$moment(this.content.last_publication_date).format('ll')
+      return this.$moment(this.lastPublicationDate).format('ll')
     }
   }
 }
