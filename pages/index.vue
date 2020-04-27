@@ -19,10 +19,7 @@
         >
       </div>
     </div>
-    <CustomSection
-      id="home-content"
-      bg-light
-    >
+    <CustomSection id="home-content" bg-light>
       <RichText :content="data.main_content" />
     </CustomSection>
     <SlicesSection v-if="slices.length" :slices="slices" />
