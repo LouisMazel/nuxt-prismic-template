@@ -78,19 +78,19 @@ export default {
     }
 
     &__title > * {
-      color: $default-color !important;
+      color: $secondary-colorq !important;
 
       > * {
-        color: $primary-color;
+        color: $secondary-color;
       }
     }
 
     &__subtitle > * {
-      color: $default-color;
+      color: $primary-color;
     }
 
     &__subsubtitle > * {
-      color: $primary-color;
+      color: $secondary-color;
       font-size: 1.3em;
     }
   }
