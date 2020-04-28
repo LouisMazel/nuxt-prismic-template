@@ -32,5 +32,10 @@ module.exports = {
   ga: {
     id: 'UA-XXXXXXX-X'
   },
+  ui: {
+    primaryColor: <%APP_PRIMARY_COLOR%>,
+    primaryColor: <%APP_SECONDARY_COLOR%>,
+    hasDarkTheme: <%APP_DARK_THEME%>
+  },
   prismicEndpoint: 'https://<%APP_PRISMIC_REPO%>.cdn.prismic.io/api/v2'
 }
