@@ -1,2 +1,1 @@
-module.exports = (locale = 'en') =>
-  locale === 'en' ? 'en-us' : 'fr-fr'
+module.exports = (locale = 'en') => (locale === 'en' ? 'en-us' : 'fr-fr')

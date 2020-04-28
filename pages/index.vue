@@ -4,9 +4,9 @@
       <img
         :src="data.main_image.url"
         :alt="data.main_image.alt"
-        class="header__illu"
+        class="header__illu container"
       />
-      <div class="container">
+      <div class="container header__text">
         <RichText :content="data.main_title" class="header__title" />
         <RichText :content="data.second_title" class="header__subtitle" />
         <RichText :content="data.third_title" class="header__subsubtitle" />
@@ -64,20 +64,17 @@ export default {
     position: relative;
     overflow: hidden;
 
-    .container {
-      z-index: 1;
-      position: relative;
-      top: -100px;
-    }
-
     @media only screen and (max-width: $breakpoint-tablet) {
       // padding: 160px 10px 0 10px;
     }
 
     &__illu {
-      width: 100%;
       position: absolute;
-      bottom: -350px;
+      z-index: 0;
+    }
+
+    &__text {
+      z-index: 1;
     }
 
     &__title > * {

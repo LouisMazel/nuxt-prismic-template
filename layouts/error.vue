@@ -1,5 +1,8 @@
 <template>
-  <div class="error flex direction-column flex-center">
+  <div
+    class="error flex direction-column flex-center"
+    :class="{ 'is-dark': hasDarkTheme }"
+  >
     <h1>Error {{ error.statusCode }}</h1>
     <h4 class="text-muted mb-3">
       {{ error.message }}
@@ -10,14 +13,14 @@
     <p>
       <a :href="`mailto:${company.email}`">Contact us</a> if this error persists
     </p>
-    <MazBtn :href="homePath" class="mt-4">
+    <MazBtn href="/" class="mt-4">
       Go back home
     </MazBtn>
   </div>
 </template>
 
 <script>
-import { defaultLocale, company } from '@/config'
+import { defaultLocale, company, ui } from '@/config'
 export default {
   name: 'Error',
   props: {
@@ -25,13 +28,8 @@ export default {
   },
   data() {
     return {
-      company
-    }
-  },
-  computed: {
-    homePath() {
-      const { locale } = this.$i18n
-      return locale === defaultLocale ? '/' : `/${locale}`
+      company,
+      hasDarkTheme: ui.hasDarkTheme
     }
   }
 }
